@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-sm">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th class="col col-min th-link" (click)="sort('rank')">
+              #
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'rank' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th>&nbsp;</th>
+            <th class="col th-link" (click)="sort('name')">
+              Game
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'name' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th class="col col-min text-center th-link col-min" (click)="sort('rankChange')">
+              + / - <!-- 2020 Rank<br/>Change -->
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'rankChange' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th class="col text-center th-link col-min" (click)="sort('weight')">
+              Weight
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'weight' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th class="col text-center th-link col-min" (click)="sort('bggRank')">
+              BGG Rank
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'bggRank' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th class="col text-center th-link col-min" (click)="sort('yearPublished')">
+              Year Published
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'yearPublished' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th class="col text-center th-link col-min" (click)="sort('bggRating')">
+              BGG Rating
+              <fa-icon [icon]="isOrderDesc ? faSortDown : faSortUp" size="xs" [style.visibility]="orderBy === 'bggRating' ? 'visible' : 'hidden'"></fa-icon>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of games; let i = index;">
+            <td class="col-min">
+              {{game.rank}}
+            </td>
+            <td class="text-center">
+              <img *ngIf="game.imagePath" [src]="game.imagePath" style="max-height: 64px; max-width: 96px">
+            </td>
+            <td>
+              <a [href]="game.bggLink" target="_blank">{{game.name}}</a>
+            </td>
+            <td class="col-min text-center" title="2020 Rank Change"
+              [ngClass]="{'table-success': game.rankChange > 0, 'table-danger': game.rankChange < 0}"
+              >{{(game.rankChange > 0 ? '+' : '') + game.rankChange}}</td>
+            <td class="text-center" title="Weight">{{game.weight}}</td>
+            <td class="text-center" title="BGG Rank">{{game.bggRank}}</td>
+            <td class="text-center" title="Year Published">{{game.yearPublished}}</td>
+            <td [ngClass]="['text-center', getRatingStyle(game.bggRating)]" title="BGG Rating">{{game.bggRating}}</td>
+            <td><button type="button" class="btn btn-primary" (click)="onSaveData()">Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

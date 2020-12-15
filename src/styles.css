@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+.col-min {
+  width: 1px;
+  white-space: nowrap;
+}
+
+.th-link {
+  cursor: pointer;
+}
+
+.rating9 {
+  background: #33cc99;
+}
+
+.rating8 {
+  background: #66ff99;
+}
+
+.rating7 {
+  background: #99ffff;
+}
+
+.rating6 {
+  background: #9999ff;
+}
+
+.rating5 {
+  background: #cc99ff;
+}
